@@ -8,7 +8,6 @@ if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["pas
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    // Use prepared statements to prevent SQL injection
     $query = "SELECT * FROM users WHERE username = ? AND password = ?";
     $stmt = mysqli_prepare($connect, $query);
     mysqli_stmt_bind_param($stmt, 'ss', $username, $password);

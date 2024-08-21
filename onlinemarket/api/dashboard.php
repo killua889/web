@@ -30,7 +30,7 @@ if (isset($_POST['save_product'])) {
     $price = floatval($_POST['price']);
     $num = intval($_POST['num']);
 
-    // Handle image upload
+
     $img_name = '';
     if (isset($_FILES['img']) && $_FILES['img']['error'] == UPLOAD_ERR_OK) {
         $tmp_name = $_FILES['img']['tmp_name'];

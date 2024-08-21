@@ -1,5 +1,4 @@
 let products = document.querySelector(".products");
-// Fetch products from the server
 fetch("../api/products.php")
     .then(res => res.json())
     .then(data => {

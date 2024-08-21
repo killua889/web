@@ -23,7 +23,7 @@ if (!isset($_SESSION['user_id'])) {
 
         if ($result) {
             $row = mysqli_fetch_assoc($result);
-            mysqli_free_result($result); // Free result set
+            mysqli_free_result($result);
 
             $max = $row['num'];
             if ($quantity > $max) {
