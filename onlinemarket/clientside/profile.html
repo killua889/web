@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        Fox Online Shop
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="cart.html">Cart</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+    <div class="profile-container">
+        <div class="profile-info">
+            <!-- Profile information will be injected here -->
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Fox Online Shop. All rights reserved.</p>
+            <p>Contact us: <a href="mailto:yassentaalab51@gmail.com">yassentaalab51@gmail.com</a></p>
+            <p>Follow us:
+                <a href="https://www.facebook.com/yassen.taalab?mibextid=ZbWKwL" target="_blank">Facebook</a> |
+                <a href="https://www.upwork.com/freelancers/~0142a9ee485c102a81" target="_blank">Upwork</a> |
+                <a href="https://www.linkedin.com/in/yassen-al-sayed-65571625a/" target="_blank">LinkedIn</a>
+            </p>
+        </div>
+    </footer>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let profileContainer = document.querySelector(".profile-info");
+        
+        fetch("../api/profile.php")
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    let user = data.user;
+                    let htmlContent = `
+                        <h2>Profile Information</h2>
+                        <div class="profile-item">
+                            <span class="label">Name:</span>
+                            <span class="value">${user.username}</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Email:</span>
+                            <span class="value">${user.email}</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Password:</span>
+                            <span class="value">******</span> <!-- Masking the password -->
+                        </div>
+                        <button class="logout">Logout</button>
+                    `;
+                    profileContainer.innerHTML = htmlContent;
+                } else {
+                    profileContainer.innerHTML = `<h2>${data.message}</h2>`;
+                }
+                
+                let logoutButton = document.querySelector(".logout");
+                logoutButton.addEventListener("click", () => {
+                    fetch("../api/logout.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/x-www-form-urlencoded"
+                        },
+                        body: new URLSearchParams({
+                            "logout": "true"
+                        })
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = "../clientside/index.html"; // Redirect after logout
+                        } else {
+                            console.error("Logout failed");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error during logout:", error);
+                    });
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching profile data:", error);
+            });
+    });
+</script>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        Fox online Shop 
+    </header>
+    <div class="form-container">
+        <form id="loginform">
+            <label for="username">User Name:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <button type="submit">Login</button>
+        </form>
+        <p id="message"></p>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Fox Online Shop. All rights reserved.</p>
+            <p>Contact us: <a href="yassentaalab51@gmail.com">yassentaalab51@gmail.com</a></p>
+            <p>Follow us:
+                <a href="https://www.facebook.com/yassen.taalab?mibextid=ZbWKwL" target="_blank">Facebook</a> |
+                <a href="https://www.upwork.com/freelancers/~0142a9ee485c102a81" target="_blank">Upwordk</a> |
+                <a href="https://www.linkedin.com/in/yassen-al-sayed-65571625a/" target="_blank">linkedIn</a>
+            </p>
+        </div>
+    </footer>
+</body>
+<script>
+let form = document.getElementById("loginform");
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
+    document.getElementById('username').value="";
+    document.getElementById('password').value="";
+    fetch("../api/login.php", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({
+            'username': username,
+            'password': password
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        let message = document.getElementById("message");
+        if (data.success) {
+            window.sessionStorage.setItem("login","true");
+            message.textContent = data.message;
+            if (data.role === "user") {
+                setTimeout(() => { 
+                    message.textContent = "";
+                    window.location.href = "index.html";
+            }, 2000);
+        } else if (data.role === "admin") {
+            setTimeout(() => { 
+                message.textContent = "";
+                window.location.href = "../api/dashboard.php";
+                }, 2000);
+            }
+        } else {
+            message.textContent = data.message;
+        }
+    })
+    .catch(error => {
+        let message = document.getElementById("message");
+        message.textContent = 'An error occurred: ' + error.message;
+    });
+});
+
+</script>
+</html>

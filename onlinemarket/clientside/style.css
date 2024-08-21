@@ -1,0 +1,390 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 2rem;
+}
+
+nav {
+    background-color: #444;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+    margin: 2rem 0;
+    color: #444;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    flex: 1;
+}
+
+/* Improved product styling */
+.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+figcaption {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.product span {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+/* Buttons for adding to cart and deleting */
+button.add,
+button.delete {
+    border: none;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+    color: white;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+button.add {
+    background-color: #5cb85c;
+}
+
+button.add:hover {
+    background-color: #4cae4c;
+}
+
+button.delete {
+    background-color: #dc3545;
+}
+
+button.delete:hover {
+    background-color: #c82333;
+}
+button.logout {
+    background-color: #dc3545;
+}
+
+button.logout:hover {
+    background-color: #c82333;
+}
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
+.footer-content a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
+
+/* Login Page Specific Styles */
+.form-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-container input {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-container button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.form-container button:hover {
+    background-color: #4cae4c;
+}
+
+.form-container #message {
+    color: red;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Styles for quantity editing */
+.quantity-container {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.quantity-container input {
+    width: 60px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.quantity-container button {
+    background-color: #f0ad4e;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.quantity-container button:hover {
+    background-color: #ec971f;
+}
+
+/* Cart summary styles */
+.cart-summary {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cart-summary p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.cart-summary #total-quantity,
+.cart-summary #total-price {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.4rem;
+}
+
+/* Additional Button Styles for Checkout */
+button.checkout {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button.checkout:hover {
+    background-color: #0056b3;
+}
+
+/* Flex container for buttons in cart summary */
+.cart-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.cart-actions button {
+    margin-bottom: 0.5rem;
+    width: 80%; /* Ensures the buttons are responsive */
+}
+
+.cart-actions button:last-child {
+    margin-bottom: 0; /* No margin for the last button */
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+    .products {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .cart-summary {
+        padding: 1rem;
+        max-width: 90%;
+    }
+
+    .cart-actions button {
+        width: 100%;
+    }
+}
+.profile-container {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.profile-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.2rem;
+}
+
+.profile-item .label {
+    font-weight: bold;
+    color: #444;
+}
+
+.profile-item .value {
+    color: #666;
+    text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-item .value {
+        text-align: left;
+        margin-top: 0.5rem;
+    }
+}
+button.logout {
+    background-color: #dc3545; /* Red background for logout button */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    padding: 0.8rem 1.5rem; /* Padding for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1rem; /* Font size */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s ease-in-out; /* Smooth background color transition */
+    width: 100%; /* Full width button */
+    margin-top: 1rem; /* Margin on top */
+}
+
+button.logout:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+button.logout:active {
+    background-color: #bd2130; /* Even darker red when button is pressed */
+}
