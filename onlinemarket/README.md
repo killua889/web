@@ -36,41 +36,51 @@ Follow these steps to get the project running on your local machine:
 
     - If you want to create the tables manually, execute the following SQL **queries:**
 ``` sql
-CREATE DATABASE online_market;
+-- Create the database
+CREATE DATABASE IF NOT EXISTS online_market;
 USE online_market;
 
--- Users Table
-CREATE TABLE users (
+-- Create the 'users' table
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    username VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'user') DEFAULT 'user'
 );
-INSERT INTO users (name, email, password, role) VALUES
-('Admin', 'admin@example.com', 'admin123', 'admin');
-INSERT INTO users (name, email, password, role) VALUES
-('user', 'user@example.com', 'user123', 'user');
 
--- Products Table
-CREATE TABLE products (
+-- Insert default admin user
+INSERT INTO users (username, password, role) VALUES
+('admin', 'admin123', 'admin'),
+('user', 'user123', 'user');
+
+-- Create the 'products' table
+CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     price DECIMAL(10,2) NOT NULL,
-    img VARCHAR(255), -- Path to product image
-    num INT NOT NULL DEFAULT 0 -- Product quantity
+    image VARCHAR(255), -- Path to the product image
+    num INT NOT NULL DEFAULT 0 -- Quantity available
 );
 
--- Carts Table
-CREATE TABLE carts (
-    userid INT NOT NULL,
+-- Insert example products
+INSERT INTO products (name, description, price, image, num) VALUES
+('Luffy Poster', 'Epic Monkey D. Luffy One Piece poster.', 12.50, 'imgs/wallpaperflare.com_wallpaper(1).jpg', 15),
+('Sukuna Poster', 'Jujutsu Kaisen Ryomen Sukuna poster.', 11.75, 'imgs/wallpaperflare.com_wallpaper(3).jpg', 10);
+-- Create the 'carts' table
+CREATE TABLE IF NOT EXISTS carts (
+    user_id INT NOT NULL,
     product_id INT NOT NULL,
     quantity INT NOT NULL,
-    PRIMARY KEY (userid, product_id),
-    FOREIGN KEY (userid) REFERENCES users(id) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, product_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
+
+-- Insert example cart items
+INSERT INTO carts (user_id, product_id, quantity) VALUES
+(1, 1, 2), 
+(1, 2, 1);
 ```
 
 ### 3. Configure the Backend
