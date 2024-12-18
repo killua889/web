@@ -30,7 +30,7 @@ if (!isset($_SESSION['user_id'])) {
                 echo json_encode(['success' => false, 'message' => "The max number in stock is ${max}"]);
             } else {
                 // Check if the product is already in the cart
-                $query = "SELECT quantity FROM cart WHERE user_id=? AND product_id=?";
+                $query = "SELECT quantity FROM carts WHERE user_id=? AND product_id=?";
                 $stmt = mysqli_prepare($connect, $query);
                 mysqli_stmt_bind_param($stmt, 'ii', $uid, $pid);
                 mysqli_stmt_execute($stmt);
@@ -39,12 +39,12 @@ if (!isset($_SESSION['user_id'])) {
 
                 if ($productInCart) {
                     // Update the quantity if the product is already in the cart
-                    $query = "UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ?";
+                    $query = "UPDATE carts SET quantity = ? WHERE user_id = ? AND product_id = ?";
                     $stmt = mysqli_prepare($connect, $query);
                     mysqli_stmt_bind_param($stmt, 'iii', $quantity, $uid, $pid);
                 } else {
                     // Insert into cart if the product is not already there
-                    $query = "INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)";
+                    $query = "INSERT INTO carts (user_id, product_id, quantity) VALUES (?, ?, ?)";
                     $stmt = mysqli_prepare($connect, $query);
                     mysqli_stmt_bind_param($stmt, 'iii', $uid, $pid, $quantity);
                 }

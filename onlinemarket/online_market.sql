@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS products (
 
 -- Insert example products
 INSERT INTO products (name, description, price, image, num) VALUES
-('Luffy Poster', 'Epic Monkey D. Luffy One Piece poster.', 12.50, 'imgs/wallpaperflare.com_wallpaper(1).jpg', 15),
-('Sukuna Poster', 'Jujutsu Kaisen Ryomen Sukuna poster.', 11.75, 'imgs/wallpaperflare.com_wallpaper(3).jpg', 10);
+('Luffy Poster', 'Epic Monkey D. Luffy One Piece poster.', 12.50, 'wallpaperflare.com_wallpaper(1).jpg', 15),
+('Sukuna Poster', 'Jujutsu Kaisen Ryomen Sukuna poster.', 11.75, 'wallpaperflare.com_wallpaper(3).jpg', 10);
 
 
 -- Create the 'carts' table

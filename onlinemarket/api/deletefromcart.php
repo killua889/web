@@ -12,7 +12,7 @@ if (isset($_POST["product_id"]) && !empty($_POST["product_id"])) {
     $pid = $_POST["product_id"];
     $uid = $_SESSION["user_id"];
 
-    $query = "SELECT quantity FROM cart WHERE user_id=? AND product_id=?";
+    $query = "SELECT quantity FROM carts WHERE user_id=? AND product_id=?";
     $stmt = mysqli_prepare($connect, $query);
     mysqli_stmt_bind_param($stmt, 'ii', $uid, $pid);
     mysqli_stmt_execute($stmt);
@@ -21,7 +21,7 @@ if (isset($_POST["product_id"]) && !empty($_POST["product_id"])) {
 
     if ($productInCart) {
         
-        $query = "DELETE FROM cart WHERE user_id=? AND product_id=?";
+        $query = "DELETE FROM carts WHERE user_id=? AND product_id=?";
         $stmt = mysqli_prepare($connect, $query);
         mysqli_stmt_bind_param($stmt, 'ii', $uid, $pid);
 
@@ -31,7 +31,7 @@ if (isset($_POST["product_id"]) && !empty($_POST["product_id"])) {
             echo json_encode(["success" => false, "message" => "Failed to delete product"]);
         }
     } else {
-        echo json_encode(["success" => false, "message" => "We can't find this product id in your cart"]);
+        echo json_encode(["success" => false, "message" => "We can't find this product id in your carts"]);
     }
 } else {
     echo json_encode(["success" => false, "message" => "Invalid product id"]);

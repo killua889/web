@@ -2,7 +2,7 @@
 define("HOSTNAME","localhost");
 define("USERNAME","root");
 define("PASSWORD","");
-define("DATABASE","online market");
+define("DATABASE","online_market");
 $connect = mysqli_connect(HOSTNAME,USERNAME,PASSWORD,DATABASE);
 if(!$connect){
     die("connect failed");

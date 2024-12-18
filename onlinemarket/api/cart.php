@@ -19,7 +19,7 @@ else{
         p.num, 
         c.quantity 
     FROM 
-        cart c 
+        carts c 
     JOIN 
         products p 
     ON 
